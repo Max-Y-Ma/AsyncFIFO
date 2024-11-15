@@ -28,7 +28,9 @@ module rptr_empty #(
   //---------------------------------------------------------------
   // FIFO empty when the next rptr == synchronized wptr or on reset
   //---------------------------------------------------------------
+  logic rempty_val;
   assign rempty_val = (rgraynext == rq2_wptr);
+
   always @(posedge rclk or negedge rrst_n)
     if (!rrst_n) rempty <= 1'b1;
     else rempty <= rempty_val;

@@ -29,7 +29,9 @@ module wptr_full #(
   // (wgnext[ASIZE-1] !=wq2_rptr[ASIZE-1]) &&
   // (wgnext[ASIZE-2:0]==wq2_rptr[ASIZE-2:0]));
   //------------------------------------------------------------------
+  logic wfull_val;
   assign wfull_val = (wgraynext == {~wq2_rptr[ASIZE:ASIZE-1], wq2_rptr[ASIZE-2:0]});
+
   always @(posedge wclk or negedge wrst_n)
     if (!wrst_n) wfull <= 1'b0;
     else wfull <= wfull_val;
